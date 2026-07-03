@@ -1,0 +1,9 @@
+-- Este archivo es informativo. El seed real ocurre en tiempo de ejecución
+-- (src/Database.php -> seedAdmin) porque el hash BCrypt debe generarse con
+-- password_hash() de PHP en el momento del primer arranque, no puede quedar
+-- como texto fijo aquí sin exponer un hash reutilizable en el repositorio.
+--
+-- Equivalente conceptual de lo que se inserta automáticamente:
+--
+-- INSERT INTO usuarios (username, password_hash, rol)
+-- VALUES ('admin', '<hash BCrypt generado en runtime>', 'ADMIN');
