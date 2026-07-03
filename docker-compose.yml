@@ -1,0 +1,11 @@
+services:
+  app:
+    image: php:8.3-cli
+    working_dir: /app
+    volumes:
+      - ./:/app
+    ports:
+      - "8080:8080"
+    command: >
+      sh -c "docker-php-ext-install pdo pdo_sqlite >/dev/null 2>&1;
+             php -S 0.0.0.0:8080 -t public"
