@@ -1,0 +1,43 @@
+### Estas peticiones son de referencia. Como el login usa CSRF token y sesión
+### con cookies, la forma más simple de probar es desde el navegador.
+### Si usas la extensión REST Client de VS Code, ajusta el token CSRF
+### copiándolo del formulario HTML antes de cada prueba.
+
+### 1. Ver formulario de login (aquí obtienes la cookie de sesión y el token CSRF)
+GET http://localhost:8080/login
+
+### 2. Login (reemplaza csrf_token por el valor real del formulario)
+POST http://localhost:8080/login
+Content-Type: application/x-www-form-urlencoded
+
+username=admin&password=Admin*2026&csrf_token=PEGAR_TOKEN_AQUI
+
+### 3. Listar materias (requiere sesión activa)
+GET http://localhost:8080/materias
+
+### 4. Crear materia
+POST http://localhost:8080/materias
+Content-Type: application/x-www-form-urlencoded
+
+codigo=APW501&nombre=Aplicaciones+Web&creditos=4&semestre=5&csrf_token=PEGAR_TOKEN_AQUI
+
+### 5. Editar materia (id=1)
+POST http://localhost:8080/materias/1
+Content-Type: application/x-www-form-urlencoded
+
+codigo=APW501&nombre=Aplicaciones+Web+II&creditos=5&semestre=5&csrf_token=PEGAR_TOKEN_AQUI
+
+### 6. Eliminar (lógico) materia (id=1)
+POST http://localhost:8080/materias/1/eliminar
+Content-Type: application/x-www-form-urlencoded
+
+csrf_token=PEGAR_TOKEN_AQUI
+
+### 7. Logout
+POST http://localhost:8080/logout
+Content-Type: application/x-www-form-urlencoded
+
+csrf_token=PEGAR_TOKEN_AQUI
+
+### 8. Verificar cabeceras de seguridad
+GET http://localhost:8080/materias
